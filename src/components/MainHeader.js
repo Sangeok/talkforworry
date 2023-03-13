@@ -15,7 +15,7 @@ function MainHeader({isLoggedIn}) {
         <div className={styles.main__header}>
             <ul>
                 <li>
-                    <FontAwesomeIcon icon={faFaceSmile} />
+                <StyledLink to ="/"><FontAwesomeIcon icon={faFaceSmile} /></StyledLink>
                 </li>
             </ul>
             <ul>
