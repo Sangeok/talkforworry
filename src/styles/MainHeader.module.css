@@ -17,3 +17,8 @@
     padding-top : 2%;
     padding-right: 30px;
 }
+
+.logNoli {
+    color : blue;
+    cursor: pointer;
+}

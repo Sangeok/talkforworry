@@ -1,16 +1,33 @@
+import {useState, useEffect} from "react";
 import styles from "../styles/MainHeader.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFaceSmile } from "@fortawesome/free-regular-svg-icons";
 import {Link} from "react-router-dom";
 import styled from 'styled-components';
+import LoginModal from "../components/LoginModal.js";
 
 
-function MainHeader({isLoggedIn}) {
+function MainHeader({isLoggedIn, getSignUp, signUp}) {
+    const [showLoginForm, setShowLoginForm] = useState(false);
+
     // link를 styled-components로 꾸밈
     const StyledLink = styled(Link)`
         color : black;
         text-decoration: none;
-    `
+    `        
+    // LogIn/SignUp 누를 시 부모의 state인 signUp이 true로 바뀜.
+    const setSignUp = () => {
+        getSignUp(true);
+        // loginForm을 보여줌(문제 : LoginModal에 전송되는 showLoginForm은 계속 true.)
+        setShowLoginForm(true);
+    }
+
+    // 하위 component에서 반영된 영향이 부모 component에도 영향을 미침
+    const getshowLoginForm = (item) => {
+        setShowLoginForm(item);
+        // console.log(signUp);
+    }
+
     return (
         <div className={styles.main__header}>
             <ul>
@@ -32,11 +49,19 @@ function MainHeader({isLoggedIn}) {
                     </li>
                 ) : (
                     // login이 안 됐다면 login을 하게
-                    <li className="logNoli">
-                        <StyledLink to ="/auth">LogIn/SignUp</StyledLink>
+                    <li className="logNoli" 
+                        onClick={setSignUp}
+                        style={{cursor: 'pointer'}}
+                        
+                        >
+                       LogIn/SignUp
                     </li>
                 )}
-            </ul>
+
+                {
+                    (showLoginForm && <LoginModal showLoginForm={showLoginForm} getshowLoginForm={getshowLoginForm}/>)
+                }
+            </ul> 
         </div>
     )
 }
