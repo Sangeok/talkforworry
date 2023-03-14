@@ -14,6 +14,10 @@ function MainHeader({isLoggedIn, getSignUp, signUp}) {
     const StyledLink = styled(Link)`
         color : black;
         text-decoration: none;
+        // link에 마우스 올릴 시 색깔 변경
+        &:hover {
+            color : 0d6efd;
+        }
     `        
     // LogIn/SignUp 누를 시 부모의 state인 signUp이 true로 바뀜.
     const setSignUp = () => {
@@ -29,7 +33,7 @@ function MainHeader({isLoggedIn, getSignUp, signUp}) {
     }
 
     return (
-        <div className={styles.main__header}>
+        <div className={`${styles.main__header} ${styles.logNoli} `}>
             <ul>
                 <li>
                 <StyledLink to ="/"><FontAwesomeIcon icon={faFaceSmile} /></StyledLink>
@@ -48,13 +52,12 @@ function MainHeader({isLoggedIn, getSignUp, signUp}) {
                         <StyledLink to ="/profile">Profile</StyledLink>
                     </li>
                 ) : (
-                    // login이 안 됐다면 login을 하게
-                    <li className="logNoli" 
+                    // login이 안 됐다면 login을 하게                         style={{cursor: 'pointer'}}
+                    <li 
                         onClick={setSignUp}
-                        style={{cursor: 'pointer'}}
                         
                         >
-                       LogIn/SignUp
+                       <span className="logNoli">LogIn/SignUp</span>
                     </li>
                 )}
 
