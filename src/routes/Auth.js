@@ -2,8 +2,6 @@ import {useState} from "react";
 import LoginModal from "../components/LoginModal.js";
 
 function Auth() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [show, setShow] = useState(false);
 
     const onSubmit = (event) => {
@@ -15,7 +13,7 @@ function Auth() {
     return (
         <>
             <LoginModal/>
-            <form onSubmit={onSubmit}>
+            {/* <form onSubmit={onSubmit}>
                 <input 
                     name="email" 
                     type="email"
@@ -31,7 +29,7 @@ function Auth() {
                     required
                 />
                 <input type="submit" value="logIn"/>
-            </form>
+            </form> */}
         </>
     );
 }

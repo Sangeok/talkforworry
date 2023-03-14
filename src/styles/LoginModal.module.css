@@ -1,0 +1,41 @@
+.loginMd {
+    display : flex;
+    text-align: center;
+}
+
+/* type이 email인 input tag 꾸미기 */
+.loginForm input[type="email"] {
+    border-top-left-radius : 10px;
+    border-top-right-radius: 10px;
+}
+
+.loginForm input[type="password"] {
+    border-bottom-left-radius : 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.loginForm input {
+    border-color: rgb(220, 204, 204);
+    outline: none;
+}
+
+.loginForm input:focus {
+    border-color: green;
+    outline: none;
+}
+
+.loginForm {
+    padding-bottom: 40px;
+}
+
+.search__icons {
+    position: absolute;
+    right : 350px;
+    bottom : 60%;
+}
+
+.password__icons {
+    position: absolute;
+    right : 350px;
+    bottom : 48%;
+}
