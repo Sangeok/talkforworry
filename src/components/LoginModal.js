@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { authService } from '../mybase';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -8,12 +9,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // fontawesome을 사용할 땐 solid인지, regular인지 등을 잘 확인해야함.
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { Link } from 'react-router-dom';
+import { async } from '@firebase/util';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 function LoginModal({showLoginForm, getshowLoginForm}) {
 
     const [show, setShow] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [newAccount, setNewAccount] = useState("");
+    // const auth = getAuth();
 
     // styled-components로 react-bootstrap의 modal창 꾸미기
     const ModalHeaderStyle = styled(Modal.Header)`
@@ -23,6 +29,9 @@ function LoginModal({showLoginForm, getshowLoginForm}) {
     const ModalBodyStyle = styled(Modal.Body)`
         display : flex;
         margin : auto;
+    `
+
+    const ModalFooterStyle = styled(Modal.Footer)`
     `
 
     // Modal 창의 닫기 버튼 누를 시, 부모의 showLoginForm을 false로, show state를 false로 바꿈
@@ -41,8 +50,24 @@ function LoginModal({showLoginForm, getshowLoginForm}) {
         }
     }
 
-    const onSubmit = (event) => {
-        event.preventDefault();
+    const onSubmit = async (event) => {
+        event.preventDefault(); 
+        let data;
+        try{
+            if(newAccount) {
+                // Create new Account
+                data = await createUserWithEmailAndPassword(authService, email, password);
+            }
+            else {
+                // LogIn for existing user
+                data = await signInWithEmailAndPassword(authService, email, password);
+            }
+            console.log(data);
+        }
+        catch(error) {
+            alert(error.message);
+        }
+
     }
 
     // showLoginForm이 true라면 Modal창 띄워주고 아니면 말아(첫 렌더링만 시행)
@@ -57,8 +82,9 @@ function LoginModal({showLoginForm, getshowLoginForm}) {
         <div>
             <Modal show={show} className={styles.loginMd}>
                 <ModalHeaderStyle>
-                    <Modal.Title>로그인</Modal.Title>
+                    <Modal.Title>LogIn</Modal.Title>
                 </ModalHeaderStyle>
+                
                 <div className={styles.loginForm}>
                     <form onSubmit={onSubmit}>
                         <div>
@@ -84,9 +110,12 @@ function LoginModal({showLoginForm, getshowLoginForm}) {
                     </form>
                 </div>
                 <Modal.Footer>
-                    <Button className="btn_close" variant="secondary" onClick={setShowLoginForm}>
-                        닫기
-                    </Button>
+                    <div className={styles.loginButton}>
+                        <Button className="btn_close" onClick={setShowLoginForm}>
+                            login
+                        </Button>
+                        <Link to='/auth'><h6>If you are not a user...</h6></Link>
+                    </div>
                 </Modal.Footer>
             </Modal>
         </div>

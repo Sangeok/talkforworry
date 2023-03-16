@@ -1,6 +1,7 @@
 .loginMd {
     display : flex;
     text-align: center;
+    align-items: center;
 }
 
 /* type이 email인 input tag 꾸미기 */
@@ -14,28 +15,40 @@
     border-bottom-right-radius: 10px;
 }
 
-.loginForm input {
-    border-color: rgb(220, 204, 204);
-    outline: none;
-}
-
+/* 로그인 폼 클릭시 기존 테두리를 지우고 색깔 테두리로 변경함 */
 .loginForm input:focus {
-    border-color: green;
-    outline: none;
+    border-style: none;
+    outline : 2.5px solid green;
 }
 
 .loginForm {
     padding-bottom: 40px;
 }
 
+/* 만약 해당 아이콘을 input tag안에 넣고 싶다? 새로운 input을 꾸며서 만들면됨..ㅋㅋ */
 .search__icons {
     position: absolute;
     right : 350px;
-    bottom : 60%;
+    bottom : 68%;
 }
 
 .password__icons {
     position: absolute;
     right : 350px;
-    bottom : 48%;
+    bottom : 58%;
+}
+
+.loginButton {
+    padding : 50px;
+}
+.loginButton button {
+    position: absolute;
+    right : 220px;
+    top : 200px;
+}
+
+.loginButton h6 {
+    position: absolute;
+    top : 250px;
+    left : 170px;
 }
