@@ -13,6 +13,8 @@ import { Link } from 'react-router-dom';
 import { async } from '@firebase/util';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
+
+// loginModal은 blog에 글로 남기고 page login 창으로 새롭게 design..
 function LoginModal({showLoginForm, getshowLoginForm}) {
 
     const [show, setShow] = useState(false);

@@ -5,6 +5,7 @@ import { faFaceSmile } from "@fortawesome/free-regular-svg-icons";
 import {Link} from "react-router-dom";
 import styled from 'styled-components';
 import LoginModal from "../components/LoginModal.js";
+import Auth from "../routes/Auth.js";
 
 
 function MainHeader({isLoggedIn, getSignUp, signUp}) {
@@ -52,18 +53,15 @@ function MainHeader({isLoggedIn, getSignUp, signUp}) {
                         <StyledLink to ="/profile">Profile</StyledLink>
                     </li>
                 ) : (
-                    // login이 안 됐다면 login을 하게                         style={{cursor: 'pointer'}}
-                    <li 
-                        onClick={setSignUp}
-                        
-                        >
-                       <span className="logNoli">LogIn/SignUp</span>
+                    // login이 안 됐다면 login을 하게
+                    <li onClick={setSignUp}>
+                       <StyledLink to ="/auth">LogIn/SignUp</StyledLink>
                     </li>
                 )}
 
-                {
+                {/* {
                     (showLoginForm && <LoginModal showLoginForm={showLoginForm} getshowLoginForm={getshowLoginForm}/>)
-                }
+                } */}
             </ul> 
         </div>
     )

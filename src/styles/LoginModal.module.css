@@ -1,3 +1,5 @@
+/* position absolute로 꾸며도 되는 이유 : modal창이라 건들일 수 X */
+
 .loginMd {
     display : flex;
     text-align: center;
