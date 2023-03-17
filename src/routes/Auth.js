@@ -8,7 +8,7 @@ import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { Link } from "react-router-dom";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, GithubAuthProvider, signInWithPopup } from 'firebase/auth';
 
 function Auth() {
     // 모달창을 여기다가 옮기고..
@@ -45,7 +45,18 @@ function Auth() {
         catch(error) {
             alert(error.message);
         }
+    }
 
+    const onSocialClick = async (event) => {
+        const {target:{name}} = event;
+        let provider;
+        if(name==="google") {
+            provider = new GoogleAuthProvider();
+        }
+        else if(name==="github") {
+            provider = new GithubAuthProvider();
+        }
+        await signInWithPopup(authService, provider);
     }
 
     return (
@@ -84,7 +95,7 @@ function Auth() {
                     </form>
                     <div className={styles.loginContinue}>
                         <div>
-                            <button name="google" style={{backgroundColor:'white'}}>
+                            <button name="google" onClick={onSocialClick} style={{backgroundColor:'white'}}>
                                 <span className={styles.googleIcon}>
                                     <FontAwesomeIcon icon={faGoogle}/>
                                 </span>
@@ -92,7 +103,7 @@ function Auth() {
                             </button>
                         </div>
                         <div>
-                            <button name="github" style={{backgroundColor:'black', color:'white'}}>
+                            <button name="github" onClick={onSocialClick} style={{backgroundColor:'black', color:'white'}}>
                                 <span className={styles.githubIcon}>
                                     <FontAwesomeIcon icon={faGithub}/>
                                 </span>
