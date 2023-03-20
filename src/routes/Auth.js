@@ -1,4 +1,5 @@
 import {useState} from "react";
+import SignUpModal from "../components/SignUpModal";
 import styles from "../styles/Auth.module.css";
 import { authService } from "../mybase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,7 +16,8 @@ function Auth() {
     // 사이트 회원가입이 필요한 경우에는 모달창을
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [newAccount, setNewAccount] = useState("");
+    const [showSignUp, setShowSignUp] = useState(false);
+    
 
     const onChange = (event) => {
         const {target : {name, value}} = event;
@@ -27,20 +29,11 @@ function Auth() {
         }
     }
 
-    // 수정필요(현재 Auth component는 login만 가능)
     const onSubmit = async (event) => {
         event.preventDefault(); 
-        let data;
         try{
-            if(newAccount) {
-                // Create new Account
-                data = await createUserWithEmailAndPassword(authService, email, password);
-            }
-            else {
-                // LogIn for existing user
-                data = await signInWithEmailAndPassword(authService, email, password);
-            }
-            console.log(data);
+           // LogIn for existing user
+           await signInWithEmailAndPassword(authService, email, password);
         }
         catch(error) {
             alert(error.message);
@@ -57,6 +50,15 @@ function Auth() {
             provider = new GithubAuthProvider();
         }
         await signInWithPopup(authService, provider);
+    }
+
+    const onClickSingUp = () => {
+        setShowSignUp(true);
+    }
+
+    // 하위 component에서 반영된 영향이 부모 component에도 영향을 미침
+    const getShowSignUpForm = (item) => {
+        setShowSignUp(item);
     }
 
     return (
@@ -90,6 +92,7 @@ function Auth() {
                             </div>
                         </div>
                         <div className={styles.loginButton}>
+                        {/* 로그인 버튼 누를 시 signIn */}
                         <input type="submit" value="logIn"/>
                         </div>
                     </form>
@@ -113,10 +116,14 @@ function Auth() {
                     </div>
                     {/* 수정요망 */}
                     <div style={{paddingTop : '15px', paddingLeft : '22px'}}>
-                        <Link to='/auth'>If you are not a user...</Link>
+                        {/* 회원가입을 위한 모달창을 띄울까? => 모달창이 괜찮을듯 */}
+                        <span className={styles.signUpText} onClick={onClickSingUp}>If you are not a user...</span>
                     </div>
                 </div>
             </div>
+            {
+                (showSignUp && <SignUpModal showSignUp={showSignUp} getShowSignUpForm={getShowSignUpForm}/>)
+            }
         </div>
     );
 }

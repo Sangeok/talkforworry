@@ -23,18 +23,18 @@ function MainHeader({isLoggedIn, getSignUp, signUp}) {
             color : 0d6efd;
         }
     `        
-    // LogIn/SignUp 누를 시 부모의 state인 signUp이 true로 바뀜.
-    const setSignUp = () => {
-        getSignUp(true);
-        // loginForm을 보여줌(문제 : LoginModal에 전송되는 showLoginForm은 계속 true.)
-        setShowLoginForm(true);
-    }
+    // // LogIn/SignUp 누를 시 부모의 state인 signUp이 true로 바뀜.
+    // const setSignUp = () => {
+    //     getSignUp(true);
+    //     // loginForm을 보여줌(문제 : LoginModal에 전송되는 showLoginForm은 계속 true.)
+    //     setShowLoginForm(true);
+    // }
 
-    // 하위 component에서 반영된 영향이 부모 component에도 영향을 미침
-    const getshowLoginForm = (item) => {
-        setShowLoginForm(item);
-        // console.log(signUp);
-    }
+    // // 하위 component에서 반영된 영향이 부모 component에도 영향을 미침
+    // const getshowLoginForm = (item) => {
+    //     setShowLoginForm(item);
+    //     // console.log(signUp);
+    // }
     
     const onLogOutClick = () => {
         authService.signOut();
@@ -68,7 +68,7 @@ function MainHeader({isLoggedIn, getSignUp, signUp}) {
                     </>
                 ) : (
                     // login이 안 됐다면 login을 하게
-                    <li onClick={setSignUp}>
+                    <li>
                        <StyledLink to ="/auth">LogIn/SignUp</StyledLink>
                     </li>
                 )}
