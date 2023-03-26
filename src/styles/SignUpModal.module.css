@@ -1,1 +1,19 @@
 /* position absolute로 꾸며도 되는 이유 : modal창이라 건들일 수 X */
+
+.showModal {
+    display : flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.search__icons {
+    padding-right: 10px;
+}
+
+.password__icons {
+    padding-right: 10px;
+}
+
+.password__form {
+    padding-bottom: 10px;
+}

@@ -7,11 +7,10 @@ import styled from 'styled-components';
 import { authService } from "../mybase";
 import { useNavigate } from "react-router-dom";
 import LoginModal from "../components/LoginModal.js";
-import Auth from "../routes/Auth.js";
+// import Auth from "../routes/Auth.js";
 
 
 function MainHeader({isLoggedIn, getSignUp, signUp}) {
-    const [showLoginForm, setShowLoginForm] = useState(false);
     const navigate = useNavigate()
 
     // link를 styled-components로 꾸밈
@@ -22,19 +21,7 @@ function MainHeader({isLoggedIn, getSignUp, signUp}) {
         &:hover {
             color : 0d6efd;
         }
-    `        
-    // // LogIn/SignUp 누를 시 부모의 state인 signUp이 true로 바뀜.
-    // const setSignUp = () => {
-    //     getSignUp(true);
-    //     // loginForm을 보여줌(문제 : LoginModal에 전송되는 showLoginForm은 계속 true.)
-    //     setShowLoginForm(true);
-    // }
-
-    // // 하위 component에서 반영된 영향이 부모 component에도 영향을 미침
-    // const getshowLoginForm = (item) => {
-    //     setShowLoginForm(item);
-    //     // console.log(signUp);
-    // }
+    `       
     
     const onLogOutClick = () => {
         authService.signOut();
@@ -73,9 +60,6 @@ function MainHeader({isLoggedIn, getSignUp, signUp}) {
                     </li>
                 )}
 
-                {/* {
-                    (showLoginForm && <LoginModal showLoginForm={showLoginForm} getshowLoginForm={getshowLoginForm}/>)
-                } */}
             </ul> 
         </div>
     )

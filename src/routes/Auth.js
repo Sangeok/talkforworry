@@ -8,12 +8,9 @@ import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { Link } from "react-router-dom";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, GithubAuthProvider, signInWithPopup } from 'firebase/auth';
+import { signInWithEmailAndPassword, GoogleAuthProvider, GithubAuthProvider, signInWithPopup } from 'firebase/auth';
 
 function Auth() {
-    // 모달창을 여기다가 옮기고..
-    // 사이트 회원가입이 필요한 경우에는 모달창을
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showSignUp, setShowSignUp] = useState(false);
@@ -41,6 +38,7 @@ function Auth() {
     }
 
     const onSocialClick = async (event) => {
+        event.preventDefault();
         const {target:{name}} = event;
         let provider;
         if(name==="google") {
@@ -97,20 +95,32 @@ function Auth() {
                         </div>
                     </form>
                     <div className={styles.loginContinue}>
-                        <div>
+                        <div className={styles.login__google}>
                             <button name="google" onClick={onSocialClick} style={{backgroundColor:'white'}}>
-                                <span className={styles.googleIcon}>
-                                    <FontAwesomeIcon icon={faGoogle}/>
-                                </span>
-                                Continue with Google
+                                    <ul>
+                                        <li>
+                                        <span className={styles.googleIcon}>
+                                            <FontAwesomeIcon icon={faGoogle}/>
+                                        </span>
+                                        </li>
+                                        <li>
+                                            Continue with Google
+                                        </li>
+                                    </ul>
                             </button>
                         </div>
-                        <div>
+                        <div className={styles.login__github}>
                             <button name="github" onClick={onSocialClick} style={{backgroundColor:'black', color:'white'}}>
-                                <span className={styles.githubIcon}>
-                                    <FontAwesomeIcon icon={faGithub}/>
-                                </span>
-                                Continue with Github
+                                <ul>
+                                    <li>
+                                        <span className={styles.githubIcon}>
+                                            <FontAwesomeIcon icon={faGithub}/>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        Continue with Github
+                                    </li>
+                                </ul>
                             </button>
                         </div>
                     </div>

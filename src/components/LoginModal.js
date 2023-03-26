@@ -3,7 +3,7 @@ import { authService } from '../mybase';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import styles from "../styles/LoginModal.module.css";
+// import styles from "../styles/LoginModal.module.css";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // fontawesome을 사용할 땐 solid인지, regular인지 등을 잘 확인해야함.
@@ -82,7 +82,7 @@ function LoginModal({showLoginForm, getshowLoginForm}) {
 
     return(
         <div>
-            <Modal show={show} className={styles.loginMd}>
+            {/* <Modal show={show} className={styles.loginMd}>
                 <ModalHeaderStyle>
                     <Modal.Title>LogIn</Modal.Title>
                 </ModalHeaderStyle>
@@ -119,7 +119,7 @@ function LoginModal({showLoginForm, getshowLoginForm}) {
                         <Link to='/auth'><h6>If you are not a user...</h6></Link>
                     </div>
                 </Modal.Footer>
-            </Modal>
+            </Modal> */}
         </div>
     )
 }

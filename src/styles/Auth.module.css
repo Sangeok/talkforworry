@@ -1,12 +1,7 @@
 .loginClass {
     display : flex;
     justify-content: center;
-    align-items: center;
-    top : 50%;
-}
-
-.headerText {
-    padding-top: 20px;
+    text-align: center;
 }
 
 .loginClass > div {
@@ -15,57 +10,34 @@
     box-shadow: 1px 1px 2px 4px grey;
 }
 
-.loginBody {
-    text-align: center;
-    font-family: 'Oswald', sans-serif;
-}
-
-.loginForm {
-    padding-top: 50px;
-}
-
-.loginButton {
-    padding-left: 3px;
-}
-
-.search__icons {
-    padding-right: 10px;
-}
-
-.password__icons {
-    padding-right: 10px;
-}
-
-.loginForm input[type="email"] {
-    border-top-left-radius : 10px;
-    border-top-right-radius: 10px;
-}
-
-.loginForm input[type="password"] {
-    border-bottom-left-radius : 10px;
-    border-bottom-right-radius: 10px;
-}
-
-.loginForm input:focus {
-    border-style: none;
-    outline : 2px solid green;
-}
-
-.loginFormInput {
-    padding-bottom: 20px;
+.headerText {
+    padding-top: 20px;
 }
 
 .loginFormInput input {
     width : 300px;
+    margin-left : 10px;
+    margin-right : 15px;
+}
+
+.login__google {
+    display : flex;
+    justify-content: space-between;
 }
 
 .loginContinue {
-    padding-top : 40px;
-    padding-left: 20px;
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom : 20px;
 }
 
-.loginContinue > div {
-    padding-top : 10px;
+.loginContinue ul {
+    list-style: none;
+}
+
+.loginContinue li {
+    float : left;
 }
 
 .loginContinue button{
@@ -73,13 +45,25 @@
     border-radius: 10px;
 }
 
+.loginBody {
+    font-family: 'Oswald', sans-serif;
+}
+
+.loginForm {
+    padding-top: 40px;
+}
+
+.loginButton {
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
 .googleIcon {
-    padding-right: 10px;
-    align-items: center;
+    padding-right: 40px;
 }
 
 .githubIcon {
-    padding-right: 10px;
+    padding-right: 40px;
 }
 
 .signUpText {
